@@ -1,202 +1,209 @@
-#include <iostream>
+#include <iostream>     
 using namespace std;
 
-struct Node 
+struct node
 {
-   int data;
-   Node *next;
+    int data;
+    node *link;
 };
 
-struct Node* head = NULL;
-
-void insert(int new_data)                   //creates a node at the start of the Linked list
+class MyList
 {
-   Node* ptr = new Node; //(struct Node*) malloc(sizeof(struct Node));          //this also works but is lengthy
-   ptr->data = new_data;
-   ptr->next = head;
-   head = ptr;
-}
+    private:
+    node *head;
 
-void insert_end()               //Used to insert element at the end of the linked list
-{
-    int data_end;
-    cout<<"Enter number : ";
-    cin>>data_end;
-    Node* newnode = new Node;
-    newnode->data=data_end;
-    newnode->next=NULL; 
-
-    Node* temp=head;
-    while (temp->next!=NULL)
+    public:
+    MyList()
     {
-        temp=temp->next;
+        head=NULL;
     }
-    temp->next=newnode;
-}
-
-
-void display() 
-{
-   struct Node* ptr;
-   ptr = head;
-   while (ptr != NULL) {
-      cout<<"=> "<< ptr->data <<" ";
-      ptr = ptr->next;
-   }
-}
-
-void deleteNode(Node** head_ref, int key)
-{
-     
-    // Store head node
-    Node* temp = *head_ref;
-    Node* prev = NULL;
-     
-    // If head node itself holds
-    // the key to be deleted
-    if (temp != NULL && temp->data == key)
+    void create()
     {
-        *head_ref = temp->next; // Changed head
-        delete temp;            // free old head
-        return;
-    }
- 
-    // Else Search for the key to be deleted,
-    // keep track of the previous node as we
-    // need to change 'prev->next' */
-    else
-    {
-        while (temp != NULL && temp->data != key)
+        node *nn,*t;
+        nn=new node;
+        int a;
+        cout<<"\nEnter the number: ";
+        cin>>a;
+        nn->data=a;
+        nn->link=NULL;
+        if (head==NULL)
         {
-            prev = temp;
-            temp = temp->next;
+            head=nn;
         }
- 
-        // If key was not present in linked list
-        if (temp == NULL)
-            return;
- 
-        // Unlink the node from linked list
-        prev->next = temp->next;
- 
-        // Free memory
-        delete temp;
-
-    }
-
-}
- 
-void delete_end()                                 //Deletes element from the end of the linked list
-{
-    Node* temp=head;
-    while (temp->next->next!=NULL)
-    {
-        temp=temp->next;
-    }
-    temp->next=NULL;
-}
-
-void delete_front()                               //deletes the first element in the list
-{
-    Node* temp=head;
-    head=head->next;
-    temp->next=NULL;
-    delete(temp);
-}
-
-bool search(Node** head_ref,int key1)             //to search element in linked list, return if element exists or not
-{
-    Node* current = *head_ref;
-    while (current!=NULL)
-    {
-        if (current->data==key1)
+        else
         {
-            return true;
+            t=head;
+            while (t->link!=NULL)
+            {
+                t=t->link;
+            }
+            t->link=nn;
         }
         
-    }
-    return false;
-    
-}
+    } 
 
-void insert_position(int key3,int pos,Node** head_re)
-{
-    Node* curr=*head_re;
-    Node* ptr = new Node;
-    ptr->data=key3;
-
-    while (curr!=NULL)
+    void display()
     {
-        if(curr->data==pos)
+        cout<<"\nThe elements in the list are as follows:\n";
+        node *t  = head;
+        while (t!=NULL)
         {
-            ptr->next=curr->next;
-            curr->next=NULL;
-            curr->next=ptr;
+            cout<<t->data<<" -> ";
+            t=t->link;
         }
-        curr=curr->next;
     }
     
-}
+    void addf()
+    {
+        int n;
+        node *nn = new node;
+        cout<<"\nEnter your number: ";
+        cin>>n;
+        nn->data=n;
+        nn->link=head;
+        head=nn;
+    }
+    
+    void deletef()
+    {
+        node *t = head;
+        head =t->link;
+        delete t;
+        cout<<"\nFront element deleted successfully!";
+    }
 
-int main() 
+    void deleter()
+    {
+        node *prev,*t;
+        t=head;
+        while (t->link!=0)
+        {
+            prev=t;
+            t=t->link;
+        }
+        prev->link=NULL;
+        delete t;
+        cout<<"\nRear element deleted successfully!";
+    }
+    
+    void addmid()
+    {
+        node *nn,*prev,*t;
+        int count=1;
+        nn=new node;
+        int p,n;
+        cout<<"\nEnter the element: ";
+        cin>>n;
+        nn->data=n;
+        cout<<"\nEnter the position where you want to add: ";
+        cin>>p;
+        t=head;
+        while (count<p)
+        {
+            prev=t;
+            t=t->link;
+            count++;
+        }
+        prev->link=nn;
+        nn->link=t;
+    }
+    
+    void deletemid()
+    {
+        node *prev,*t;
+        int p;
+        int count=1;
+        t=head;
+        cout<<"\nEnter the position you want to delete: ";
+        cin>>p;
+        while (count<p)
+        {
+            prev=t;
+            t=t->link;
+            count++;
+        }
+        prev->link=t->link;
+        delete t;
+    }
+    
+    void search()
+    {
+        int a;
+        node *t;
+        bool flag=true;
+        cout<<"\nEnter the element you want to search: ";
+        cin>>a;
+        t=head;
+        while (t!=NULL)
+        {
+            if (t->data==a)
+            {
+                flag=false;
+                break;
+            }
+            t=t->link;
+        }
+        if (flag==false)
+        {
+            cout<<"\nElement found!";
+        }
+        else if (flag==true)
+        {
+            cout<<"\nElement not found!";
+        }
+    }
+};
+
+
+int main()
 {
-    int choice,x,y,val,posi;
+    MyList ml;
+    int op;
+    char ch;
     while (1)
     {
-        cout<<"\n\nPress \n1 to insert at front\n2 to display\n3 to delete a paritcular element ";
-        cout<<"\n4 to delete from front\n5 to delete from end \n6 to insert at a location\n7 to insert from end\n8 to exit\n";
-        cin>>choice;
-
-        switch (choice)
+        cout<<"\n\nPress 1 to Create a linked list\nPress 2 to add element to the front\nPress 3 to delete the element in the front\nPress 4 to delete the lement in the rear";
+        cout<<"\nPress 5 to display\nPress 6 to add element in the middle\nPress 7 to delete element in the middle\nPress 8 to search for an element\nPress 9 to exit";
+        cout<<"\nEnter your choice: ";
+        cin >>op;
+        switch(op)
         {
-        case 1:
-            cout<<"Enter number to be inserted : ";
-            cin>>x;
-            insert(x);
+            case 1:
+                    do
+                    {
+                        ml.create();
+                        cout<<"\nDo you want to continue?(y/n): ";
+                        cin>>ch;
+                    }while (ch=='y');
             break;
-        case 2:
-            cout<<"the linked list is \n\n";
-            display();
+            case 2:
+                    ml.addf();
             break;
-         
-        case 3:
-            cout<<"Enter element to be deleted : ";
-            cin>>y;
-            deleteNode(&head,y);
+            case 3:
+                    ml.deletef();
             break;
-
-        case 4:
-            cout<<"Deleted element from the front\n";
-            delete_front();
+            case 4:
+                    ml.deleter();
             break;
-
-        case 5:
-            cout<<"Deleted element from the end\n";
-            delete_end();
+            case 5:
+                    ml.display();
             break;
-
-        case 6:
-            cout<<"enter position and data : ";
-            cin>>posi>>val;
-            insert_position(val,posi,&head);
+            case 6:
+                    ml.addmid();
             break;
-        
-        case 7:
-            insert_end();
+            case 7:
+                    ml.deletemid();
             break;
-
-        case 8:
-            cout<<"Exit\n";
-            return 0;
+            case 8:
+                    ml.search();
             break;
-        
-        default:
-            cout<<"Wrong input, try again";
-            return 0;
+            case 9:
+                    exit(0);
             break;
+            
+            default:
+                    cout<<"\nInvalid input!";
         }
-
     }
-    
-   return 0;
+    return 0;
 }
