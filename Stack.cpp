@@ -118,7 +118,7 @@ int main()
                     cout<<"Do you want to push more y/n :";
                     cin>>c;
                 }
-            break;
+                break;
     
             case 2:
                 s.pop();
