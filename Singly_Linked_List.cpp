@@ -52,6 +52,7 @@ class MyList
             t=t->link;
         }
     }
+    
     void addf()
     {
         int n;
@@ -62,6 +63,7 @@ class MyList
         nn->link=head;
         head=nn;
     }
+    
     void deletef()
     {
         node *t = head;
@@ -105,6 +107,7 @@ class MyList
         prev->link=nn;
         nn->link=t;
     }
+    
     void deletemid()
     {
         node *prev,*t;
@@ -122,6 +125,7 @@ class MyList
         prev->link=t->link;
         delete t;
     }
+    
     void search()
     {
         int a;
