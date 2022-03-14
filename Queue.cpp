@@ -1,64 +1,12 @@
 #include <iostream>
+#include "Queue.h"
 using namespace std;
-
-class Queue
-{
-private:
-    int queue[100], n = 100, front = -1, rear = -1;
-
-public:
-    void Enqueue();
-    void Dequeue();
-    void Display();
-};
-
-void Queue ::Enqueue()
-{
-    int val;
-    if (rear == n - 1)
-        cout << "Queue Overflow" << endl;
-    else
-    {
-        if (front == -1)
-            front = 0;
-        cout << "Insert the element in queue : " << endl;
-        cin >> val;
-        rear++;
-        queue[rear] = val;
-    }
-}
-void Queue ::Dequeue()
-{
-    if (front == -1 || front > rear)
-    {
-        cout << "Queue Underflow ";
-        return;
-    }
-    else
-    {
-        cout << "Element deleted from queue is : " << queue[front] << endl;
-        front++;
-        ;
-    }
-}
-void Queue ::Display()
-{
-    if (front == -1)
-        cout << "Queue is empty" << endl;
-    else
-    {
-        cout << "Queue elements are : ";
-        for (int i = front; i <= rear; i++)
-            cout << queue[i] << " ";
-        cout << endl;
-    }
-}
 
 int main()
 {
     int ch;
 
-    Queue q;
+    Queue <string> q;
     while (1)
     {
         cout << "1) Enqueue element to queue" << endl;
