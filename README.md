@@ -5,7 +5,7 @@
 
 ### Dijkstras Algorithm
 
-### Prims and Kruskals Algorithm [Kruskals.cpp]
+ Prims and Kruskals Algorithm [Kruskals.cpp]
 
 ### Queues
 
