@@ -3,7 +3,7 @@
 
 ### Binary Search Tree
 
-### * Dijkstras Algorithm
+### Dijkstras Algorithm
 
 ### Prims and Kruskals Algorithm 
 
