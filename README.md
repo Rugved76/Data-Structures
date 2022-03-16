@@ -1,11 +1,11 @@
 # Data-Structures
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Binary Search Tree
+### Binary Search Tree  
 
 ### Dijkstras Algorithm
 
-### Prims and Kruskals Algorithm 
+### Prims and Kruskals Algorithm [Kruskals.cpp]
 
 ### Queues
 
