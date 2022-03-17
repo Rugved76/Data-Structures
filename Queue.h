@@ -4,53 +4,70 @@ using namespace std;
 template <class T>
 class Queue
 {
-private:
-    T queue[100];
-    int n = 100, front = -1, rear = -1;
-
-public:
-    void Enqueue();
-    void Dequeue();
-    void Display();
+    public:
+        int n,front,rear;
+        T queue[100];
+        Queue();
+        void Enqueue(T val);
+        void Dequeue();
+        void Display();
+        int Top();
+        bool IsEmpty();
 };
 
 template <class T>
-void Queue<T> ::Enqueue()
+Queue<T> :: Queue(){
+    n = 100;
+    front = -1;
+    rear = -1;
+}
+
+template <class T>
+void Queue<T>::Enqueue(T val)
 {
-    T val;
     if (rear == n - 1)
         cout << "Queue Overflow" << endl;
     else
     {
         if (front == -1)
             front = 0;
-        cout << "Insert the element in queue : " << endl;
-        cin >> val;
+
         rear++;
         queue[rear] = val;
     }
-    Display();
 }
 
 template <class T>
-void Queue<T> ::Dequeue()
+int Queue<T>::Top(){
+    return front;
+}
+
+template <class T>
+void Queue<T>::Dequeue()
 {
-    if (front == -1 || front > rear)
+    if (IsEmpty())
     {
         cout << "Queue Underflow ";
         return;
     }
     else
     {
-        cout << "Element deleted from queue is : " << queue[front] << endl;
         front++;
-        ;
     }
-    Display();
 }
 
 template <class T>
-void Queue<T> ::Display()
+bool Queue<T> :: IsEmpty(){
+
+    if (front == -1  or front > rear)
+        return 1;
+    else 
+        return 0;
+
+}
+
+template <class T>
+void Queue<T>::Display()
 {
     if (front == -1)
         cout << "Queue is empty" << endl;
