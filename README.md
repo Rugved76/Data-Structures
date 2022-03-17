@@ -18,4 +18,6 @@
 
 ### DFS and BFS : [DFS.cpp](DFS.cpp) | [BFS.cpp](BFS.cpp)
 
+### Heaps : [Heap.cpp](Heap.cpp) | [Heap_Sort.cpp](Heap_Sort.cpp)
+
 <hr>
