@@ -15,7 +15,7 @@ class Stack
 public:
     Stack();
     void push(T);
-    T pop();
+    void pop();
     T topelement();
     bool isempty();
     void display();
@@ -38,7 +38,14 @@ void Stack<T>::push(T key)
 }
 
 template <class T>
-T Stack<T>::pop()
+T Stack<T>::topelement()
+{
+
+    return top->data;
+}
+
+template <class T>
+void Stack<T>::pop()
 {
     if (isempty())
     {
@@ -46,13 +53,9 @@ T Stack<T>::pop()
     }
     else
     {
-        T val;
         Node *temp = top;
-        val = temp->data;
-        cout << "Popped element is : " << top->data << endl;
         top = top->next;
         delete (temp);
-        return val;
     }
 }
 
