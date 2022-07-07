@@ -16,7 +16,7 @@
 
 ### Stack : [Stack.cpp](Stack.cpp) | [Stack.h](Stack.h) | [Stack_with_array.cpp](Stack_with_array.cpp) |
 
-### DFS and BFS : [DFS.cpp](DFS.cpp) | [BFS.cpp](BFS.cpp)
+### DFS and BFS : [DFS_&_BFS.cpp](DFS_&_BFS.cpp) | 
 
 ### Heaps : [Heap.cpp](Heap.cpp) | [Heap_Sort.cpp](Heap_Sort.cpp)
 
