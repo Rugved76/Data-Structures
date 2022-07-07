@@ -31,16 +31,15 @@ Stack<T>::Stack()
 template <class T>
 void Stack<T>::push(T key)
 {
-    Node *newnode = new Node;
-    newnode->data = key;
-    newnode->next = top;
-    top = newnode;
+    Node *newNode = new Node;
+    newNode->data = key;
+    newNode->next = top;
+    top = newNode;
 }
 
 template <class T>
 T Stack<T>::topelement()
 {
-
     return top->data;
 }
 
@@ -79,6 +78,35 @@ void Stack<T>::display()
 }
 
 template <class T>
+bool Stack<T>::isempty()
+{
+    if (top == NULL)
+    {
+        return 1;
+    }
+    else
+        return 0;
+}
+
+template <class T>
+void Stack<T>::reverse()
+{
+    Node *temp = NULL;
+    Node *temp2;
+    while (top != NULL)
+    {
+        temp2 = top->next;
+        top->next = temp;
+        temp = top;
+        top = temp2;
+    }
+    top = temp;
+}
+
+/*
+    Alternative reversing algorithm
+
+template <class T>
 void Stack<T>::reverse()
 {
     Node *prev, *curr;
@@ -101,13 +129,4 @@ void Stack<T>::reverse()
     display();
 }
 
-template <class T>
-bool Stack<T>::isempty()
-{
-    if (top == NULL)
-    {
-        return 1;
-    }
-    else
-        return 0;
-}
+*/
