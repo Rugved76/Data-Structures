@@ -13,6 +13,7 @@ class Queue
         void Display();
         int Top();
         bool IsEmpty();
+        void Reverse();
 };
 
 template <class T>
@@ -78,4 +79,20 @@ void Queue<T>::Display()
             cout << queue[i] << " ";
         cout << endl;
     }
+}
+
+template <class T>
+void Queue<T> :: Reverse(){
+    int l=0,r=rear;
+    
+    while(l<=r){
+        T temp;
+        temp= queue[l];
+        queue[l]=queue[r];
+        queue[r]=temp;
+        l++;
+        r--;
+    }
+    l=0;
+    r=rear;
 }
