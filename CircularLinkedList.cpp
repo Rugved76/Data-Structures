@@ -176,6 +176,7 @@ int main()
     int choice, el, d;
     while (1)
     {
+        cout<<"Press\n1 to insert\n2 to display list\n3 to delete node\n4 to detect loop\n5 to verify it is Circular\n\n";
         cin >> choice;
         switch (choice)
         {
@@ -196,11 +197,11 @@ int main()
             break;
 
         case 4:
-            cout << detectLoop(tail);
+            cout << detectLoop(tail)<<endl;
             break;
 
         case 5:
-            cout << isCircularList(tail);
+            cout << isCircularList(tail)<<endl;
             break;
 
         default:
