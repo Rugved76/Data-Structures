@@ -1,249 +1,285 @@
-/* This program is for implementing doubly linked list
-Doubly linked list is a special type of Linked List which is has two links for a given node
-hence the list can be traversed in two different direction.
-*/
-
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 
-// class Node
-// {
-// public:
-//     int data;
-//     Node *next;
-//     Node *prev;
-// };
-
-struct Node{
-    int data;
-    Node* next;
-    Node* prev;
-};
-
-class DoublyLinkedList
+class Node
 {
-    Node *head, *tail; // creating two pointer of class Node.
-    int totalNodes;
 
 public:
-    DoublyLinkedList()
+    int data;
+    Node *prev;
+    Node *next;
+
+    // constructor
+    Node(int d)
     {
-        head = NULL;
-        tail = NULL;
-        totalNodes = 0;
+        this->data = d;
+        this->prev = NULL;
+        this->next = NULL;
     }
 
-    void append(int data)
-    { // function that appends data at the end of the DLL(O(1) time complexity)
-        Node *newNode = new Node;
-        newNode->data = data;
-        newNode->next = newNode->prev = NULL;
-
-        if (totalNodes == 0)
-        { // checking if there are any nodes or not.
-            head = newNode;
-            tail = newNode;
-            totalNodes++;
-        }
-        else
-        {
-            tail->next = newNode; // inserting at the end.
-            newNode->next = NULL;
-            newNode->prev = tail;
-            tail = newNode; // assigning new node as tail Note: we do this after all the pointers are set.
-            totalNodes++;
-        }
-    }
-
-    void preAppend(int data)
-    { // function which appends the data at the beginning of the DLL;
-        // O(1) time complexity
-        if (totalNodes == 0)
-        {
-            append(data);
-        }
-        else
-        {
-            Node *newNode = new Node;
-            newNode->data = data;
-            newNode->next = newNode->prev = NULL;
-
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
-            totalNodes++;
-        }
-    }
-
-    void insertBetween(int data, int pos)
+    // destructor
+    ~Node()
     {
-        /* to insert at the position so we can consider that
-            position = 1 is a head */
-        if (pos > totalNodes)
+        int val = this->data;
+        if (next != NULL)
         {
-            cout << "Value too large to insert" << endl;
-            return;
+            delete next;
+            next = NULL;
         }
-        else if (pos < 1)
-        {
-            cout << "Position can't be negative" << endl;
-            return;
-        }
-        else if (pos == 1)
-        {
-            preAppend(data);
-        }
-        else if (pos == totalNodes)
-        {
-            append(data);
-        }
-        else
-        {
-            Node *newNode = new Node;
-            newNode->data = data;
-            newNode->prev = NULL;
-
-            Node *temp = tail;
-            for (int i = totalNodes - 1; i >= pos; i--)
-            {
-                temp = temp->prev;
-            }
-            newNode->next = temp;
-            newNode->prev = temp->prev;
-            temp->prev->next = newNode;
-            totalNodes++;
-        }
-    }
-
-    void removeElement(int pos)
-    {
-        /* to delete at some position so we can consider that
-            position = 1 is a head */
-        if (pos < 1 || pos > totalNodes)
-        {
-            cout << "Cannot delete at this position" << endl;
-            return;
-        }
-        else
-        {
-            Node *temp = head;
-            if (pos == 1)
-            {
-                head = head->next;
-                free(temp);
-                totalNodes--;
-                return;
-            }
-            for (int i = 1; i < pos; i++)
-            { // Since the pos(position) starts from 1, it should start from i = 1
-                temp = temp->next;
-            }
-            if (temp->next != NULL)
-            {
-                temp->next->prev = temp->prev;
-                temp->prev->next = temp->next;
-                free(temp);
-                totalNodes--;
-            }
-            else
-            {
-                temp->prev->next = NULL;
-                tail = tail->prev; // should assign new tail as the previous node of the original tail
-                free(temp);
-                totalNodes--;
-            }
-        }
-    }
-
-    void reverseList()
-    {
-        Node *temp = NULL;
-        Node *current = head;
-
-        while (current != NULL)
-        { // swapping all next and prev pointers of nodes.
-            temp = current->prev;
-            current->prev = current->next;
-            current->next = temp;
-            current = current->prev;
-        }
-
-        if (temp != NULL)
-        { // checking for edge cases.
-            head = temp->prev;
-        }
-    }
-
-    void display()
-    { // function to print the list that is being generated.
-        if (head == NULL)
-        {
-            cout << "Please Create a Doubly Linked List" << endl;
-            return;
-        }
-        Node *temp = head;
-        while (temp != NULL)
-        {
-            cout << temp->data << " <--> ";
-            temp = temp->next;
-        }
-        cout << "NULL" << endl;
+        cout << "memory free for node with data " << val << endl;
     }
 };
+
+// traversing a linked list
+void print(Node *head)
+{
+    Node *temp = head;
+
+    while (temp != NULL)
+    {
+        cout << temp->data << "-> ";
+        temp = temp->next;
+    }
+    cout << endl;
+    cout<<endl;
+}
+
+// gives length of Linked List
+int getLength(Node *head)
+{
+    int len = 0;
+    Node *temp = head;
+
+    while (temp != NULL)
+    {
+        len++;
+        temp = temp->next;
+    }
+
+    return len;
+}
+
+void insertAtHead(Node *&tail, Node *&head, int d)
+{
+
+    // empty list
+    if (head == NULL)
+    {
+        Node *temp = new Node(d);
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
+        Node *temp = new Node(d);
+        temp->next = head;
+        head->prev = temp;
+        head = temp;
+    }
+}
+
+
+void insertAtTail(Node *&tail, Node *&head, int d)
+{
+    if (tail == NULL)
+    {
+        Node *temp = new Node(d);
+        tail = temp;
+        head = temp;
+    }
+    else
+    {
+        Node *temp = new Node(d);
+        tail->next = temp;
+        temp->prev = tail;
+        tail = temp;
+    }
+}
+
+
+void insertAtPosition(Node *&tail, Node *&head, int position, int d)
+{
+
+    // insert at Start
+    if (position == 1)
+    {
+        insertAtHead(tail, head, d);
+        return;
+    }
+
+    Node *temp = head;
+    int cnt = 1;
+
+    while (cnt < position - 1)
+    {
+        temp = temp->next;
+        cnt++;
+    }
+
+    // inserting at Last Position
+    if (temp->next == NULL)
+    {
+        insertAtTail(tail, head, d);
+        return;
+    }
+
+    // creating a node for data
+    Node *nodeToInsert = new Node(d);
+
+    nodeToInsert->next = temp->next;
+    temp->next->prev = nodeToInsert;
+    temp->next = nodeToInsert;
+    nodeToInsert->prev = temp;
+}
+
+
+void deleteNode(int position, Node *&head)
+{
+
+    // deleting first or start node
+    if (position == 1)
+    {
+        Node *temp = head;
+        temp->next->prev = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    else
+    {
+        // deleting any middle node or last node
+        Node *curr = head;
+        Node *prev = NULL;
+
+        int cnt = 1;
+        while (cnt < position)
+        {
+            prev = curr;
+            curr = curr->next;
+            cnt++;
+        }
+
+        curr->prev = NULL;
+        prev->next = curr->next;
+        curr->next = NULL;
+
+        delete curr;
+    }
+}
+
+void reverse(Node **head_ref)
+{
+    Node *ptr1 = NULL;
+    Node *ptr2 = *head_ref;
+
+    // swap next and prev for all nodes of
+    // doubly linked list
+    while (ptr2 != NULL)
+    {
+        // ptr1 points to NULL 
+        ptr1 = ptr2->prev;
+        // ptr2 prev points to ptr2`s(head) next node
+        ptr2->prev = ptr2->next;
+        // ptr2`s(head) next points to ptr1(node behind head) 
+        ptr2->next = ptr1;
+        // shifting ptr2 to the next node
+        // here prev may be confusing but remember that ptr2->prev points to the next node in sequence
+        ptr2 = ptr2->prev;
+    }
+
+    // Before changing the head, check for the cases like empty
+    // list and list with only one node
+    // since ptr1 is always behind ptr2 and ptr1s prev points to 
+    // ptr2 which is the last node in sequence so it will be set as head(head_ref)
+    if (ptr1 != NULL)
+    {
+        *head_ref = ptr1->prev;
+    }
+}
+
+
 
 int main()
 {
-    DoublyLinkedList d;
+
+    // Inititalization
+    Node *head = NULL;
+    Node *tail = NULL;
+
+    int choice, d, pos;
     while (1)
     {
-        cout << "\n\nPress 1 to append";
-        cout << "\nPress 2 to pre append";
-        cout << "\nPress 3 to insert between";
-        cout << "\nPress 4 to remove element";
-        cout << "\nPress 5 to display";
-        cout << "\nPress 6 to reverse list";
-        cout << "\nPress 7 to exit\n";
-
-        int choice, data, pos;
+        cout<<"Press \n1 to insert at head\n2 to insert at tail\n3 to insert at position";
+        cout<<"\n4 to delete node\n5 to display list\n6 to reverse list\n7 to get length\n\n";
         cin >> choice;
-
         switch (choice)
         {
         case 1:
-            cin >> data;
-            d.append(data);
+            cout<<"Enter data :";
+            cin >> d;
+            insertAtHead(tail, head, d);
             break;
 
         case 2:
-            cin >> data;
-            d.preAppend(data);
+            cout<<"Enter data :";
+            cin >> d;
+            insertAtTail(tail, head, d);
             break;
 
         case 3:
-            cin >> data >> pos;
-            d.insertBetween(data, pos);
+            cout<<"Enter postion :";
+            cin>>pos;
+            cout<<"Enter data :";
+            cin >> d;
+            insertAtPosition(tail,head,pos,d);
             break;
 
         case 4:
+            cout<<"Enter postion :";
             cin >> pos;
-            d.removeElement(pos);
+            deleteNode(pos,head);
             break;
 
         case 5:
-            d.display();
+            print(head);
             break;
 
         case 6:
-            d.reverseList();
+            reverse(&head);
             break;
+        
         case 7:
-            cout<<"Exit!";
-            return 0;
+            cout<<"List has "<<getLength(head)<<" nodes\n";
+            break;
+
         default:
-            cout << "Invalid entry please try again\n";
+            cout<<"Invalid input!";
+            break;
         }
     }
 
     return 0;
 }
+
+/*
+Alternate reversing code
+Only gives the head node dont know why
+
+void reverse(Node* head){
+    Node* ptr1 = head;
+    Node* ptr2 = head->next;
+
+    ptr1->next = NULL;
+    ptr1->prev = ptr2;
+
+    while (ptr2!=NULL)
+    {
+        ptr2->prev = ptr2->next;
+        ptr2->next = ptr1;
+        ptr1 = ptr2;
+        ptr2 = ptr2->prev;
+    }
+    head = ptr1;
+}
+
+*/
