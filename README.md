@@ -14,7 +14,7 @@
              
 ### Linked List : [Singly_Linked_List.cpp](Singly_Linked_List.cpp) | [Doubly_Linked_List.cpp](Doubly_Linked_List.cpp) | [CircularLinkedList.cpp](CircularLinkedList.cpp) |
 
-### Stack : [Stack.cpp](Stack.cpp) | [Stack.h](Stack.h) | [Stack_with_array.cpp](Stack_with_array.cpp) |
+### Stack : [Stack.cpp](Stack.cpp) | [Stack.h](Stack.h) | [Stack_with_array.cpp](Stack_with_array.cpp) | [TwoStack.cpp](TwoStack.cpp) |
 
 ### DFS and BFS : [DFS_&_BFS.cpp](DFS_&_BFS.cpp) | 
 
