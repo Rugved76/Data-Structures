@@ -47,7 +47,7 @@ public:
             node *t = head;
             while (t != NULL)
             {
-                  cout << t->data<<"==> ";
+                  cout << t->data << "--> ";
                   t = t->link;
             }
       }
@@ -129,7 +129,7 @@ public:
       {
             int a;
             node *temp;
-            bool flag = true;
+            bool flag = false;
             cout << "\nEnter the element you want to search: ";
             cin >> a;
             temp = head;
@@ -137,19 +137,39 @@ public:
             {
                   if (temp->data == a)
                   {
-                        flag = false;
+                        flag = true;
                         break;
                   }
                   temp = temp->link;
             }
-            if (flag == false)
+            if (flag)
             {
                   cout << "\nElement found!";
             }
-            else if (flag == true)
+            else 
             {
                   cout << "\nElement not found!";
             }
+      }
+
+      void reverse()
+      {
+            node *temp = NULL;
+            node *temp2;
+            while (head != NULL)
+            {
+                  // temp2 will point to the next of head
+                  temp2 = head->link;
+                  // head will point to temp
+                  // temp is NULL
+                  head->link = temp;
+                  // temp will point to head
+                  temp = head;
+                  // head will shift to the next node of head(temp2)
+                  head = temp2;
+            }
+            // setting the head as last element
+            head = temp;
       }
 };
 
@@ -161,7 +181,7 @@ int main()
       while (1)
       {
             cout << "\n\nPress 1 to Create a linked list\nPress 2 to add element to the front\nPress 3 to delete the element in the front\nPress 4 to delete the lement in the rear";
-            cout << "\nPress 5 to display\nPress 6 to add element in the middle\nPress 7 to delete element in the middle\nPress 8 to search for an element\nPress 9 to exit";
+            cout << "\nPress 5 to display\nPress 6 to add element in the middle\nPress 7 to delete element in the middle\nPress 8 to search for an element\nPress 9 to reverse list\nPress 10 to exit";
             cout << "\nEnter your choice: ";
             cin >> op;
             switch (op)
@@ -196,7 +216,10 @@ int main()
                   obj.search();
                   break;
             case 9:
-                  exit(0);
+                  obj.reverse();
+                  break;
+            case 10:
+                  return 0;
                   break;
 
             default:
