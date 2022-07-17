@@ -68,9 +68,10 @@ void print(Node *tail)
         return;
     }
 
+    // do while helps when there is only one node in list
     do
     {
-        cout << tail->data << " ";
+        cout << tail->data << "-> ";
         tail = tail->next;
     } while (tail != temp);
 
@@ -89,7 +90,6 @@ void deleteNode(Node *&tail, int value)
     else
     {
         // non-empty
-
         // assuming that "value" is present in the Linked List
         Node *prev = tail;
         Node *curr = prev->next;
@@ -176,7 +176,7 @@ int main()
     int choice, el, d;
     while (1)
     {
-        cout<<"Press\n1 to insert\n2 to display list\n3 to delete node\n4 to detect loop\n5 to verify it is Circular\n\n";
+        cout<<"Press\n1 to insert\n2 to display list\n3 to delete node\n4 to detect loop\n5 to verify it is Circular\n6 to exit\n\n";
         cin >> choice;
         switch (choice)
         {
@@ -189,19 +189,35 @@ int main()
 
         case 2:
             print(tail);
+            cout<<endl;
             break;
 
         case 3:
+            cout<<"Enter the data\n";
             cin >> d;
             deleteNode(tail, d);
             break;
 
         case 4:
-            cout << detectLoop(tail)<<endl;
+            if(detectLoop(tail)){
+                cout<<"Loop is present\n";
+            }
+            else{
+                cout<<"Loop is absent\n";
+            }
             break;
 
         case 5:
-            cout << isCircularList(tail)<<endl;
+            if(isCircularList(tail)){
+                cout<<"List is circular\n";
+            }
+            else{
+                cout<<"List is not circular\n";
+            }
+            break;
+
+        case 6:
+            return 0;
             break;
 
         default:
@@ -209,13 +225,6 @@ int main()
             break;
         }
     }
-
-    // if(isCircularList(tail)) {
-    //     cout << " Linked List is Circular in nature" << endl;
-    // }
-    // else{
-    //     cout << "Linked List is not Circular " << endl;
-    // }
 
     return 0;
 }
