@@ -12,7 +12,7 @@
 
 ### Queues : [Queue.cpp](Queue.cpp) | [Circular_Queue.cpp](Circular_Queue.cpp) | [Priority_Queue.cpp](Priority_Queue.cpp) | [Queue.h](Queue.h)
              
-### Linked List : [Singly_Linked_List.cpp](Singly_Linked_List) | [Doubly_Linked_List.cpp](Doubly_Linked_List.cpp) | [CircularLinkedList.cpp](CircularLinkedList.cpp) |
+### Linked List : [Singly_Linked_List.cpp](Singly_Linked_List.cpp) | [Doubly_Linked_List.cpp](Doubly_Linked_List.cpp) | [CircularLinkedList.cpp](CircularLinkedList.cpp) |
 
 ### Stack : [Stack.cpp](Stack.cpp) | [Stack.h](Stack.h) | [Stack_with_array.cpp](Stack_with_array.cpp) |
 
