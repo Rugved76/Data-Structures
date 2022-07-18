@@ -14,12 +14,15 @@ class Stack
 
 public:
     Stack();
+    bool isEmpty();
     void push(T);
     void pop();
-    T topelement();
-    bool isempty();
+    T  topElement();
     void display();
-    void reverse();
+    void Reverse();
+    void insertAtBottom(T data);
+    void sortStack();
+    void sortedInsert(T data);
 };
 
 template <class T>
@@ -27,6 +30,19 @@ Stack<T>::Stack()
 {
     top = NULL;
 }
+
+// template <class T>
+// bool Stack<T>::isEmpty()
+// {
+//     if (top == NULL)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//         return false;
+//     }
+// }
 
 template <class T>
 void Stack<T>::push(T key)
@@ -38,7 +54,7 @@ void Stack<T>::push(T key)
 }
 
 template <class T>
-T Stack<T>::topelement()
+T Stack<T>::topElement()
 {
     return top->data;
 }
@@ -46,9 +62,9 @@ T Stack<T>::topelement()
 template <class T>
 void Stack<T>::pop()
 {
-    if (isempty())
+    if (isEmpty())
     {
-        cout << "Stack is empty, Nothing to display\n";
+        cout << "Stack is empty!\n";
     }
     else
     {
@@ -61,7 +77,7 @@ void Stack<T>::pop()
 template <class T>
 void Stack<T>::display()
 {
-    if (isempty())
+    if (isEmpty())
     {
         cout << "Stack is empty, nothing to display \n";
     }
@@ -78,36 +94,99 @@ void Stack<T>::display()
 }
 
 template <class T>
-bool Stack<T>::isempty()
+bool Stack<T>::isEmpty()
 {
     if (top == NULL)
     {
         return 1;
     }
     else
+    {
         return 0;
+    }
+}
+
+// template <class T>
+// void Stack<T>::Reverse()
+// {
+//     Node *temp = NULL;
+//     Node *temp2;
+//     while (top != NULL)
+//     {
+//         temp2 = top->next;
+//         top->next = temp;
+//         temp = top;
+//         top = temp2;
+//     }
+//     top = temp;
+// }
+
+template <class T>
+void Stack<T>::Reverse()
+{
+    if (isEmpty())
+    {
+        return;
+    }
+
+    T val = topElement();
+    pop();
+    Reverse();
+    insertAtBottom(val);
 }
 
 template <class T>
-void Stack<T>::reverse()
+void Stack<T>::insertAtBottom(T data)
 {
-    Node *temp = NULL;
-    Node *temp2;
-    while (top != NULL)
+    if (isEmpty())
     {
-        temp2 = top->next;
-        top->next = temp;
-        temp = top;
-        top = temp2;
+        push(data);
+        return;
     }
-    top = temp;
+
+    T val = topElement();
+    pop();
+
+    insertAtBottom(data);
+
+    push(val);
+}
+
+template <class T>
+void Stack<T>::sortedInsert(T data)
+{
+    if (isEmpty() || (!isEmpty() && topElement() < data))
+    {
+        push(data);
+        return;
+    }
+
+    T val = topElement();
+    pop();
+    sortedInsert(data);
+    push(val);
+}
+
+template <class T>
+void Stack<T>::sortStack()
+{
+    if (isEmpty())
+    {
+        return;
+    }
+
+    T val = topElement();
+    pop();
+
+    sortStack();
+    sortedInsert(val);
 }
 
 /*
     Alternative reversing algorithm
 
 template <class T>
-void Stack<T>::reverse()
+void Stack<T>::Reverse()
 {
     Node *prev, *curr;
     if (top != NULL)
@@ -125,7 +204,7 @@ void Stack<T>::reverse()
         }
     }
     top = prev;
-    cout << "reversed Stack is \n";
+    cout << "Reversed Stack is \n";
     display();
 }
 
