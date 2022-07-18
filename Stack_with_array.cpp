@@ -18,41 +18,52 @@ public:
         arr = new int[SIZE];
     }
 
+    bool isEmpty()
+    {
+        if (top == -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     // function to push data into stack-[array]
     void push(int data)
     {
         // Overflow check in case the limit exceeds
         if (top >= SIZE - 1)
         {
-            cout << "[WRANING]Stack Overflows" << endl;
+            cout << "Stack Overflows!" << endl;
             return;
         }
         // increment the counter and add the data
-        top += 1;
+        top ++;
         arr[top] = data;
     }
 
     // function pops the top most element
     void pop()
     {
-        // checking whether the stack is empty or not
-        if (top == -1)
+        // checking whether the Stack is empty! or not
+        if (isEmpty())
         {
-            cout << "[WARNING]Stack is empty." << endl;
+            cout << "Stack is empty!" << endl;
             return;
         }
-        // if its not empty display the top element and decrement top by 1 to delete the top most data
-        cout << "[INFO]Popped Element: " << arr[top] << endl;
+        // decrementing top
         top--;
     }
 
     // function used to peek onto the top most element
     int peek()
     {
-        // checking if stack is empty
-        if (top < 0)
+        // checking if Stack is empty!
+        if (isEmpty())
         {
-            cout << "error : stack is empty";
+            cout << "Stack is empty!";
             return 0;
         }
         return arr[top];
@@ -61,7 +72,13 @@ public:
     void display()
     {
         // looping over the stack conditionally
-        if (top >= 0)
+        if (isEmpty())
+        {
+            cout << "Stack is empty!" << endl;
+            return;
+        }
+        // if Stack is empty! then else block is executed
+        else
         {
             cout << "The Stack elements are: " << endl;
             for (int i = top; i >= 0; i--)
@@ -70,12 +87,12 @@ public:
             }
             cout << endl;
         }
-        // if stack is empty then else block is executed
-        else
-        {
-            cout << "[WARNING]Please fill the elements first" << endl;
-            return;
-        }
+        
+    }
+
+    int topElement()
+    {
+        return arr[top];
     }
 
     void reverse()
@@ -93,21 +110,34 @@ public:
         r = top;
         l = 0;
     }
+
+    void insertAtBottom(int data)
+    {
+        for (int i = top; i >= 0; i--)
+        {
+            arr[i + 1] = arr[i];
+        }
+        top++;
+        arr[0] = data;
+    }
+
+    void sortStack()
+    {
+        // sort(arr,arr+top); does not work for unknown reason
+        sort(arr, arr + top + 1);
+    }
 };
 
 int main()
 {
     Stack s;
-    s.push(12);
-    s.push(11);
-    s.push(13);
-    s.push(33);
-    s.push(02);
-    s.display();
 
-    cout << "Top most element: " << s.peek() << endl;
-    s.reverse();
+    s.push(3);
+    s.push(33);
+    s.push(333);
     s.display();
+    s.pop();
+    cout<<s.peek();
 
     return 0;
 }
