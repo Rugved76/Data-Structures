@@ -10,7 +10,7 @@
 
 ### Prims and Kruskals Algorithm : [Kruskals.cpp](Kruskals.cpp) |  [Prims.cpp](Prims.cpp) |
 
-### Queues : [Queue.cpp](Queue.cpp) | [Circular_Queue.cpp](Circular_Queue.cpp) | [Priority_Queue.cpp](Priority_Queue.cpp) | [Queue.h](Queue.h)
+### Queues : [Queue.cpp](Queue.cpp) | [Circular_Queue.cpp](Circular_Queue.cpp) | [Priority_Queue.cpp](Priority_Queue.cpp) | [Queue.h](Queue.h) | [DoubleEndedQueue.cpp](DoubleEndedQueue.cpp) |
              
 ### Linked List : [Singly_Linked_List.cpp](Singly_Linked_List.cpp) | [Doubly_Linked_List.cpp](Doubly_Linked_List.cpp) | [CircularLinkedList.cpp](CircularLinkedList.cpp) |
 
