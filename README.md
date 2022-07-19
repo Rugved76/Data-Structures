@@ -1,12 +1,10 @@
 # Data-Structures
 
-### All programs are in C++ 
-
 <hr>
 
-### Binary Search Tree  : [Binarytree.cpp](Binarytree.cpp) | [Binary_Search_Tree.cpp](Binary_Search_Tree.cpp)
+### Binary Search Tree  : [Binarytree.cpp](Binarytree.cpp) | [Binary_Search_Tree.cpp](Binary_Search_Tree.cpp) |
 
-### Dijkstras Algorithm : [Dijkstras.cpp](Dijkstras.cpp)
+### Dijkstras Algorithm : [Dijkstras.cpp](Dijkstras.cpp) |
 
 ### Prims and Kruskals Algorithm : [Kruskals.cpp](Kruskals.cpp) |  [Prims.cpp](Prims.cpp) |
 
@@ -16,9 +14,9 @@
 
 ### Stack : [Stack.cpp](Stack.cpp) | [Stack.h](Stack.h) | [Stack_with_array.cpp](Stack_with_array.cpp) | [TwoStack.cpp](TwoStack.cpp) |
 
-### DFS and BFS : [DFS_&_BFS.cpp](DFS_&_BFS.cpp) | 
+### DFS and BFS : [DFS_&_BFS.cpp](DFS_&_BFS.cpp) |
 
-### Heaps : [Heap.cpp](Heap.cpp) | [Heap_Sort.cpp](Heap_Sort.cpp)
+### Heaps : [Heap.cpp](Heap.cpp) | [Heap_Sort.cpp](Heap_Sort.cpp) |
 
 
 
