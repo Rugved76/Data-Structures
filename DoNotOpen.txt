@@ -18,10 +18,12 @@ The pianist
 Inglorius basterds
 A beautiful mind
 Thin red line
+Sully
 Bladerunner 2042
 Dog day afternoon
 Scent of a woman
 Once upon a time in Hollywood
+The man who knew infinity
 Donny brasco
 Goodfellas
 Casino
@@ -101,3 +103,4 @@ Solaris
 Under the skin
 Shithouse
 Drive
+The big short
